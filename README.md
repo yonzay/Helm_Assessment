@@ -15,13 +15,13 @@ Now you should be able to run `npm run backend` from the root directory to start
 
 Additionally in another terminal that also resides in the root directory you should be able to run `npm run dashboard` to start the front-end. Navigate to http://localhost:3000/register when the front-end starts
 
-You need a `session_token` to make requests to most parts of the API, this can either be a user level `session_token` created at login or registration or an admin level `session_token` which can effect all accounts and is configured in `.env.json`. Use the latter for testing.
+You need a `session_token` to make requests to most parts of the API, this can either be a user level `session_token` created at login or registration or an admin level `session_token` which can effect all accounts and is configured in `.env.json`. Use the latter for testing
 
-You need a `user_id` to make requests to most parts of the API, this key indicates the who the is invoker of an action is or the intended effected user, this can be obtained by creating a user and storing the returned `_id`.
+You need a `user_id` to make requests to most parts of the API, this key indicates the who the is invoker of an action is or the intended effected user, this can be obtained by creating a user and storing the returned `_id`
 
-For optional keys in requests to the API, they are only optional when they are not specified, they cannot be empty otherwise the validation layer will ask that you specifiy it.
+For optional keys in requests to the API, they are only optional when they are not specified, they cannot be empty otherwise the validation layer will ask that you specifiy it
 
-While using the front-end if you ever encounter `invalid session token` or a page that indicates that you're unauthorized then that means your session has expired and you need to relogin, sessions last 15 minutes.
+While using the front-end if you ever encounter `invalid session token` or a page that indicates that you're unauthorized then that means your session has expired and you need to relogin, sessions last 15 minutes
 
 `app/database/definitions.ts` contains the interfaces/schemas of all the data that is in relation to the database
 
