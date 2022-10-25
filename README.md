@@ -23,6 +23,8 @@ For optional keys in requests to the API, they are only optional when they are n
 
 While using the front-end if you ever encounter `invalid session token` or a page that indicates that you're unauthorized then that means your session has expired and you need to relogin, sessions last 15 minutes.
 
+`app/database/definitions.ts` contains the interfaces/schemas of all the data that is in relation to the database
+
 ## API Documentation
 
 http://127.0.0.1:8080/api/v1/auth/create/create_user
@@ -92,6 +94,8 @@ http://127.0.0.1:8080/api/v1/auth/update/update_user
 
 Updates an existing user with the specified fields, all specified fields **override** the current values of those fields, all fields are optional except `user_id` and `session_token`.
 
+If successful the status code will be 200 if something was modified or 304 if nothing was and all modified fields will be sent back in JSON format.
+
 ```json
 {
     "user_id": "",
@@ -120,24 +124,235 @@ Updates an existing user with the specified fields, all specified fields **overr
 
 http://127.0.0.1:8080/api/v1/auth/update/update_event
 
+Updates an existing event with the specified fields, all specified fields **override** the current values of those fields, all fields are optional except `user_id` and `session_token`.
+
+If successful the status code will be 200 if something was modified or 304 if nothing was and all modified fields will be sent back in JSON format.
+
+```json
+{
+    "user_id": "",
+    "event": {
+        "name": "",
+        "start_date": {
+            "month": 0,
+            "day": 0,
+            "year": 0
+        },
+        "start_time": {
+            "minute": 0,
+            "hour": 0,
+            "meridiem": "AM"
+        },
+        "end_date": {
+            "month": 0,
+            "day": 0,
+            "year": 0
+        },
+        "end_time": {
+            "minute": 0,
+            "hour": 0,
+            "meridiem": "AM"
+        },
+        "participants": [{
+            "_id": "",
+            "required": false
+        }]
+    },
+    "session_token": ""
+}
+```
+
 http://127.0.0.1:8080/api/v1/auth/update/update_participants
+
+Explictly updates the participants specified of an event with a predefined action, all fields are required except for `participants.required` **only if** the action isn't `mark`.
+
+If the action is `add` then the specified participants are invited by mass.
+
+If successful the status code is 200 or 304 if nothing was modified and depending on the action the corresponding data is sent back in JSON format.
+
+```json
+{
+    "action": "",
+    "user_id": "",
+    "event_id": "",
+    "participants": [{
+        "user_id": "",
+        "required": false
+    }],
+    "session_token": ""
+}
+```
 
 http://127.0.0.1:8080/api/v1/auth/delete/delete_user
 
+Permanently deletes the user specified, all fields are required.
+
+If successful the status code is 204.
+
+```json
+{
+    "user_id": "",
+    "session_token": ""
+}
+```
+
 http://127.0.0.1:8080/api/v1/auth/delete/delete_event
+
+Permanently deletes the event specified, all fields are required.
+
+If successful the status code is 200.
+
+```json
+{
+    "user_id": "",
+    "event_id": "",
+    "session_token": ""
+}
+```
+
 
 https://127.0.0.1:8080/api/v1/user/login
 
+Attempts to acquire authorization based on the information provided, all fields are required.
+
+If successful the status code is 200 and information about the user is returned back in JSON format along with a user level `session_token` that lasts 15 minutes.
+
+```json
+{
+    "email": "",
+    "password": ""
+}
+```
+
 https://127.0.0.1:8080/api/v1/user/extend_session
+
+Extends the duration of an existing `session_token` by 15 minutes, all fields are required.
+
+If successful the status code is 204.
+
+```json
+{
+    "user_id": "",
+    "session_token": ""
+}
+```
 
 https://127.0.0.1:8080/api/v1/user/logout
 
+Deletes the current `session_token` of the specified user, all fields are required.
+
+If successful the status code is 204.
+
+```json
+{
+    "user_id": "",
+    "session_token": ""
+}
+```
+
 https://127.0.0.1:8080/api/v1/user/query
+
+Queries the database to fetch various types of data, depending on the value of `type` at each level certain keys may or may not be required, however `type` at all levels, `user_id`, and `session_token` are always required.
+
+`users.offset` is offset by -1.
+
+If successful the status code is 200 and returns a JSON object containing an array of the fetched data, the only time an array is not returned if the query is a `self_query`.
+
+```json
+{
+    "type": "",
+    "user_id": "",
+    "events": {
+        "type": "",
+        "by_participant": "",
+        "by_date_range": {
+            "start_date": {
+                "month": 0,
+                "day": 0,
+                "year": 0
+            },
+            "end_date": {
+                "month": 0,
+                "day": 0,
+                "year": 0
+            }
+        },
+        "by_singletons": []
+    },
+    "users": {
+        "type": "",
+        "offset": 0,
+        "range": 0,
+        "by_singletons": []
+    },
+    "session_token": ""
+}
+```
 
 https://127.0.0.1:8080/api/v1/user/join_request
 
+Sends a join request to the specified event, all fields are required.
+
+If successful the status code is 204.
+
+```json
+{
+    "user_id": "",
+    "event_id": "",
+    "session_token": ""
+}
+```
+
 https://127.0.0.1:8080/api/v1/user/leave_event
+
+Leaves the specified event, all fields are required.
+
+If successful the status code is 204.
+
+```json
+{
+    "user_id": "",
+    "event_id": "",
+    "session_token": ""
+}
+```
 
 https://127.0.0.1:8080/api/v1/user/send_invitation
 
+Sends an invitation to the specified recipient to join the specified event, all fields are required.
+
+If successful the status code is 204.
+
+```json
+{
+    "user_id": "",
+    "event_id": "",
+    "recipient_id": "",
+    "vip": "",
+    "session_token": ""
+}
+```
+
 https://127.0.0.1:8080/api/v1/user/reply
+
+Replies to either an invitation or a join request, depending on `type` certain fields may or may not be required but `type`, `user_id`, and `session_token` are always required.
+
+If successful the status code is either 200 or 204 depending on the `type`.
+
+```json
+{
+    "type": "",
+    "user_id": "",
+    "join_request": {
+        "event_id": "",
+        "from_user_id": "",
+        "required": false,
+        "response": false
+    },
+    "invitation": {
+        "_id": "",
+        "response": false
+    },
+    "session_token": ""
+}
+```
