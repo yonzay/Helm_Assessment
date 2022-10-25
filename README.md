@@ -50,9 +50,9 @@ If successful the status code will be 201 and the created user will be sent back
 
 http://127.0.0.1:8080/api/v1/auth/create/create_event
 
-Creates an event with the specified fields, all fields are required except `participants`.
+Creates an event with the specified fields, all fields are required except `event.participants`.
 
-If `participants` is specified users are not directly added to the event, they are instead invited by mass.
+If `event.participants` is specified users are not directly added to the event, they are instead invited by mass.
 
 If successful the status code will be 201 and the created event will be sent back in JSON format.
 
