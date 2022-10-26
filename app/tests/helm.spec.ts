@@ -83,7 +83,7 @@ describe('Helm_Assessment Tests', () => {
                     meridiem: 'PM'
                 }
                 /*participants: [{ // Other endpoints are going to be used to add participants
-                    _id: "",
+                    user_id: "",
                     required: ""
                 }]*/
             },
@@ -116,7 +116,7 @@ describe('Helm_Assessment Tests', () => {
                     meridiem: 'PM'
                 }
                 /*participants: [{ // Other endpoints are going to be used to add participants
-                    _id: '',
+                    user_id: '',
                     required: ''
                 }]*/
             },
@@ -178,7 +178,7 @@ describe('Helm_Assessment Tests', () => {
                     meridiem: 'PM'
                 }
                 /*participants: [{ // only admins can directly update the participants of an event and its not recommended to do because it only effects the event's document its better to invite and let them accept
-                    _id: "",
+                    user_id: "",
                     required: false
                 }]*/
             },
