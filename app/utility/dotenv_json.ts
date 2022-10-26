@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
-import { compile } from 'joi';
+import { compile } from '@hapi/joi';
 import { MiscValidations } from '../validations/misc_validations';
 
 export const dotenv_json = (options: any) => {

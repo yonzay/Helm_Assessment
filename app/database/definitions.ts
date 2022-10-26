@@ -44,6 +44,7 @@ interface user_schema {
     date_joined: Date;
     invitations: invitation[];
     subscribed_event_ids: ObjectId[];
+    session_token?: string;
 }
 
 interface event_schema {

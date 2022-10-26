@@ -69,6 +69,6 @@
     "skipLibCheck": true,                           /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true        /* Disallow inconsistently-cased references to the same file. */
   },
-  "include": [ "./app" ],
-  "exclude": [ "./node_modules", "./react_app" ]
+  "include": [ "./app", "tests" ],
+  "exclude": [ "./node_modules", "./react_app", "./app/tests" ]
 }

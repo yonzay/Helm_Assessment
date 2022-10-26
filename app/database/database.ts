@@ -13,7 +13,11 @@ class Database {
     }
     constructor(connection_uri: string, database_name: string) {
         new MongoClient(connection_uri).connect().then(result => {
-            const database = result.db(database_name);
+            if (process.env.node_env == 'test') {
+                result.db('TEST_' + database_name).dropCollection(Collections.users).catch(e => void e);
+                result.db('TEST_' + database_name).dropCollection(Collections.events).catch(e => void e);
+            }
+            const database = result.db(process.env.node_env == 'test' ? 'TEST_' + database_name : database_name);
             this.client = {
                 users: database.collection(Collections.users),
                 events: database.collection(Collections.events)

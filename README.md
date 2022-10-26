@@ -25,6 +25,8 @@ While using the front-end if you ever encounter `invalid session token` or a pag
 
 `app/database/definitions.ts` contains the interfaces/schemas of all the data that is in relation to the database
 
+While reading the API documentation `app/tests/helm.spec.ts` is a good reference to use to furthur understand how the API works, the tests can be ran with the following command `npm test`
+
 ## API Documentation
 
 http://127.0.0.1:8080/api/v1/auth/create/create_user
@@ -132,6 +134,7 @@ If successful the status code will be 200 if something was modified or 304 if no
 {
     "user_id": "",
     "event": {
+        "_id": "",
         "name": "",
         "start_date": {
             "month": 0,

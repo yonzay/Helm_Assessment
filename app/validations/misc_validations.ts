@@ -1,20 +1,21 @@
-import { string, number, CustomHelpers, ErrorReport, ObjectSchema, object } from 'joi';
+import { CustomHelpers, ErrorReport, ObjectSchema } from '@hapi/joi';
+import * as Joi from '@hapi/joi';
 
 class MiscValidations {
     public static object_id = (value: string, helpers: CustomHelpers): string | ErrorReport => {
         if (!value.match(/^[0-9a-fA-F]{24}$/)) return helpers.message({ custom: 'value must be a valid MongoDB ObjectId' });
         return value;
     }
-    public static configuration: ObjectSchema<any> = object().keys({
-        node_env: string().required().custom((value: string, helpers: CustomHelpers): 'prod' | 'dev' | 'test' | ErrorReport => {
+    public static configuration: ObjectSchema<any> = Joi.object().keys({
+        node_env: Joi.string().required().custom((value: string, helpers: CustomHelpers): 'prod' | 'dev' | 'test' | ErrorReport => {
             if (value != 'prod' && value != 'dev' && value != 'test') return helpers.message({ custom: 'node_env must either be prod, dev, or test' });
             return value;
         }),
-        hostname: string().required(),
-        port: number().required().max(65535),
-        mongodb_url: string().required(),
-        database_name: string().required(),
-        admin_session_token: string().required()
+        hostname: Joi.string().required(),
+        port: Joi.number().required().max(65535),
+        mongodb_url: Joi.string().required(),
+        database_name: Joi.string().required(),
+        admin_session_token: Joi.string().required()
     }).unknown();
     public static first_name = (value: string, helpers: CustomHelpers): string | ErrorReport => {
         if (value.length <= 0) return helpers.message({ custom: 'first name can\'t be empty' });
