@@ -74,9 +74,9 @@ If successful the status code will be 201 and the created event will be sent bac
       "meridiem": "AM"
     },
     "end_date": {
-      "month": 9,
-      "day": 25,
-      "year": 2027
+      "month": 0,
+      "day": 0,
+      "year": 0
     },
     "end_time": {
       "minute": 0,
