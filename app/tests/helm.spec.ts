@@ -396,5 +396,3 @@ describe('Helm_Assessment Tests', () => {
         expect(response.statusCode).toBe(204);
     });
 });
-
-///api/v1/user/logout
