@@ -84,7 +84,7 @@ If successful the status code will be 201 and the created event will be sent bac
       "meridiem": "AM"
     },
     "participants": [{
-      "_id": "",
+      "user_id": "",
       "required": ""
     }]
   },
