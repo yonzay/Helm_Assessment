@@ -25,7 +25,7 @@ While using the front-end if you ever encounter `invalid session token` or a pag
 
 `app/database/definitions.ts` contains the interfaces/schemas of all the data that is in relation to the database
 
-While reading the API documentation `app/tests/helm.spec.ts` is a good reference to use to furthur understand how the API works, the tests can be ran with the following command `npm test`
+While reading the API documentation `app/tests/helm.spec.ts` is a good reference to use to further understand how the API works, the tests can be ran with the following command `npm test`
 
 ## API Documentation
 
