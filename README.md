@@ -214,7 +214,7 @@ If successful the status code is 200.
 ```
 
 
-https://127.0.0.1:8080/api/v1/user/login
+http://127.0.0.1:8080/api/v1/user/login
 
 Attempts to acquire authorization based on the information provided, all fields are required.
 
@@ -227,7 +227,7 @@ If successful the status code is 200 and information about the user is returned 
 }
 ```
 
-https://127.0.0.1:8080/api/v1/user/extend_session
+http://127.0.0.1:8080/api/v1/user/extend_session
 
 Extends the duration of an existing `session_token` by 15 minutes, all fields are required.
 
@@ -240,7 +240,7 @@ If successful the status code is 204.
 }
 ```
 
-https://127.0.0.1:8080/api/v1/user/logout
+http://127.0.0.1:8080/api/v1/user/logout
 
 Deletes the current `session_token` of the specified user, all fields are required.
 
@@ -253,7 +253,7 @@ If successful the status code is 204.
 }
 ```
 
-https://127.0.0.1:8080/api/v1/user/query
+http://127.0.0.1:8080/api/v1/user/query
 
 Queries the database to fetch various types of data, depending on the value of `type` at each level certain keys may or may not be required, however `type` at all levels, `user_id`, and `session_token` are always required.
 
@@ -292,7 +292,7 @@ If successful the status code is 200 and returns a JSON object containing an arr
 }
 ```
 
-https://127.0.0.1:8080/api/v1/user/join_request
+http://127.0.0.1:8080/api/v1/user/join_request
 
 Sends a join request to the specified event, all fields are required.
 
@@ -306,7 +306,7 @@ If successful the status code is 204.
 }
 ```
 
-https://127.0.0.1:8080/api/v1/user/leave_event
+http://127.0.0.1:8080/api/v1/user/leave_event
 
 Leaves the specified event, all fields are required.
 
@@ -320,7 +320,7 @@ If successful the status code is 204.
 }
 ```
 
-https://127.0.0.1:8080/api/v1/user/send_invitation
+http://127.0.0.1:8080/api/v1/user/send_invitation
 
 Sends an invitation to the specified recipient to join the specified event, all fields are required.
 
@@ -336,7 +336,7 @@ If successful the status code is 204.
 }
 ```
 
-https://127.0.0.1:8080/api/v1/user/reply
+http://127.0.0.1:8080/api/v1/user/reply
 
 Replies to either an invitation or a join request, depending on `type` certain fields may or may not be required but `type`, `user_id`, and `session_token` are always required.
 
