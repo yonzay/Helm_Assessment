@@ -14,7 +14,6 @@
 /app_build
 /react_app/.next
 .vscode
-*.js
 
 # misc
 .DS_Store
