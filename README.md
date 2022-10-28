@@ -259,7 +259,7 @@ Queries the database to fetch various types of data, depending on the value of `
 
 `users.offset` is offset by -1.
 
-If successful the status code is 200 and returns a JSON object containing an array of the fetched data, the only time an array is not returned if the query is a `self_query`.
+If successful the status code is 200 and returns a JSON object containing an array of the fetched data, the only time an array is not returned is if the query is a `self_query`.
 
 ```json
 {
