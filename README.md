@@ -42,7 +42,7 @@ If successful the status code will be 201 and the created user will be sent back
    "email": "",
    "password": "",
    "username": "",
-   "date_of_birth":{
+   "date_of_birth": {
       "year": 0,
       "month": 0,
       "day": 0
